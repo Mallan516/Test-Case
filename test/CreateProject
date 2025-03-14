@@ -1,0 +1,20 @@
+import { Selector } from 'testcafe';
+
+fixture `Test Quix App`
+    .page `https://quix.pioapp.net/`;
+
+test('Click Button on Quix App', async t => {
+    // Define a selector for a button or other element you want to interact with
+    // Example: Find a button with class 'button-class'
+    const button = Selector('button'); // You can specify a more specific selector as needed
+
+    // Verify that the button exists before clicking it
+    await t
+        .expect(button.exists).ok('Button not found on the page') // This checks if the button exists
+        .click(button); // Click the button
+
+    // Optional: Add more steps like assertions after the button click
+    // For example, checking if another element appears after clicking
+    const successMessage = Selector('.success-message'); // Replace with a real selector
+    await t.expect(successMessage.visible).ok('Success message not found after clicking the button');
+});
